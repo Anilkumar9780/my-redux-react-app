@@ -1,11 +1,20 @@
-//for add item to cart
+/**
+ *  add product to cart 
+ * @param {string} product 
+ * @returns array
+ */
 export const addCart = (product) => {
   return {
     type: "ADDITEM",
     payload: product,
   };
 };
-//for delete item from cart
+
+/**
+ * delete product
+ * @param {string} product 
+ * @returns array
+ */
 export const delCart = (product) => {
   return {
     type: "DELITEM",
@@ -13,6 +22,11 @@ export const delCart = (product) => {
   };
 };
 
+/**
+ *  increase qty
+ * @param {*} product 
+ * @returns increase Qty
+ */
 export const IncreaseQty = (product) => {
   return {
     type: "INCREASE_QUANTITY",
@@ -20,6 +34,11 @@ export const IncreaseQty = (product) => {
   };
 };
 
+/**
+ *  decrease qty
+ * @param {*} product 
+ * @returns decrease qty
+ */
 export const DecreaseQty = (product) => {
   return {
     type: "DECREASE_QUANTITY",

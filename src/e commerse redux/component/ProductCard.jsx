@@ -1,23 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action/action";
+import { Link } from 'react-router-dom';
 
-function ProductCard() {
-  const [data, setData] = React.useState([]);
-  console.log(data)
-  React.useEffect(() => {
-    const getProduct = async () => {
-      const res = await fetch(`https://fakestoreapi.com/products`);
-      setData(await res.json());
-    };
-    getProduct();
-  }, []);
-
+function ProductCard({ data }) {
+  const [loadMore, setLoadMore] = useState(8);
   const dispatch = useDispatch();
+
+  /**
+   * Load More Button 
+   */
+  const handleLoadMore = () => {
+    setLoadMore(next => next + 4)
+  };
+
+  /**
+   * product add to cart;
+   */
   const addProduct = (product) => {
     dispatch(addCart(product));
   };
+
   return (
     <div>
       {/* <!-- Content ---> */}
@@ -41,20 +44,19 @@ function ProductCard() {
           <h3 className="fw-bold mb-sm-3 mb-md-5 text-center text-md-start">New products</h3>
           <div className="row g-3 d-flex justify-content-evenly">
             {/* <!--First Card---> */}
-            {data.map((product) => {
+            {data?.slice(0, loadMore).map((product) => {
               return <div key={product.id} className="col-md-3">
-                <div className="card" style={{ width: '18rem' }}>
-                  <Link to="/productdetail">
-                    <img className="img" src={product.image}
+                <div className="card" style={{ width: '17rem' }}>
+                  <Link to={`/productinfo/${product.id}`}>
+                    <img className="img text-center" src={product.image}
                       alt={product.title}
                       width="100%" height="240px" />
                   </Link>
                   <div className="card-body">
                     <hr />
                     <h5 className="card-title">$ {product.price}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{product.title}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Camera - Black</h6>
-                    <button type='button' onClick={() => addProduct(product)}  className="btn btn-primary card-link py-2 px-4">Add to card</button>
+                    <h6 className="card-subtitle mb-2 text-muted">{product.title.substring(0, 12)}</h6>
+                    <button type='button' onClick={() => addProduct(product)} className="btn btn-primary card-link py-2 px-4">Add to card</button>
                     <span href="#" className="btn btn-outline-primary card-link">
                       {' '}
                       <i className="fa fa-heart" />
@@ -69,6 +71,12 @@ function ProductCard() {
         {/* <!--  New section --> */}
         <div className="py-5 px-3">
           <div className="container py-5">
+            {data.length > 0 ? (
+              <button
+                onClick={handleLoadMore}
+                className='btn btn-outline-primary text-center'
+              >Load More...
+              </button>) : (<div />)}
             <hr />
             <h3 className="fw-bold  text-center text-md-start mb-3">Why choose Us?</h3>
             <div className="row">

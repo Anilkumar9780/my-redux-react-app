@@ -1,11 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { addCart } from "../redux/action/action";
+import { Link, useParams } from 'react-router-dom';
+import '../css/App.css';
 
 function DetailPage() {
+  const [product, setProduct] = useState([]);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  /**
+   * product details get id
+   */
+  useEffect(() => {
+    const getProduct = async () => {
+      const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+      setProduct(await res.json());
+    };
+    getProduct();
+  }, []);
+
+  /**
+   * add to cart dis
+   */
+  const addProduct = (product) => {
+    dispatch(addCart(product));
+  };
+
   return (
     <div>
       <div id="product" className="py-3">
-        <div className="product_images" />
+        <div>
+          <img
+            src={product.image}
+            alt={product.title}
+            className="product_images"
+          />
+        </div>
         <div className="product_details">
           <Link to="/">
             <div className="back border-0">
@@ -13,46 +44,40 @@ function DetailPage() {
               <h6>
                 Back to
                 {' '}
-                <span href="">Woman</span>
+                <span href="">{product.category}</span>
               </h6>
             </div>
           </Link>
-          <h2>The Atelier Tailored Coat</h2>
-          <h3>$499.00</h3>
+          <h2> {product.title}</h2>
+          <h3>$ {product.price}</h3>
           <div className="about">
             <p>
-              Availability :
-              <span>In stock</span>
+              Product rating :-
+              {' '}
+              <span>{product.rating && product.rating.rate} &nbsp;
+                <i className="fa fa-star"></i>
+              </span>
             </p>
             <p>
-              Product Code :
+              Product category :-
               {' '}
-              <span>#4657</span>
-            </p>
-            <p>
-              Tags :
-              {' '}
-              <span>Fashion, Hood, Classic</span>
+              <span>{product.category}</span>
               {' '}
             </p>
           </div>
           <p>
-            Sleek, polished, and boasting an impeccably modern fit, this blue, 2-but-
-            ton Lazio suit features a notch lapel, flap pockets, and accompanying flat
-            front trousers—all in pure wool by Vitale Barberis Canonico.
+            {product.description}
           </p>
-          <ul>
-            <li>Dark blue suit for a tone-on-tone look</li>
-            <li>Regular fit</li>
-            <li>100% Cotton</li>
-            <li>Free shipping with 4 days delivery</li>
-          </ul>
-          <span href="">Clear Selection</span>
-          <div className="cta">
-            <div className="btn btn_primary">add to cart</div>
-            <div className="btn btn_outline_secondary">
+          <div className="cta py-3">
+            <Link to='/cart'>
+              <button
+                className="btn btn-outline-primary"
+                onClick={() => addProduct(product)}
+              >add to cart
+              </button>
+            </Link>
+            <div className="btn btn_outline-secondary">
               <span className="material-symbols-outlined">favorite</span>
-              add to wishlist
             </div>
           </div>
         </div>

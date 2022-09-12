@@ -3,23 +3,38 @@ import { useSelector, useDispatch } from "react-redux";
 import { delCart, IncreaseQty, DecreaseQty } from "../redux/action/action";
 
 export default function Cart() {
-  const cart = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.handleCart);
 
+  /**
+   *  Delete product
+   * @param {product} product 
+   */
   const handleclose = (product) => {
     dispatch(delCart(product));
   };
 
+  /**
+   * Increase Product Quantity 
+   * @param {product} product 
+   */
   const IncreaseQuantity = (product) => {
     dispatch(IncreaseQty(product));
   };
 
+  /**
+   *  Decrease Product Quantity
+   * @param {product} product 
+   */
   const DecreaseQuantity = (product) => {
     dispatch(DecreaseQty(product));
   };
-  
-  const total = Object.values(cart)
-  .reduce((result, cartItem) => result + cartItem.price*cartItem.qty, 0);
+
+  /**
+   * cart all products total price
+   */
+  const total = Object.values(cart).reduce((result, cartItem) => result + cartItem.price * cartItem.qty, 0);
+
   return (
     <div>
       <section className="h-100 gradient-custom">
@@ -69,7 +84,7 @@ export default function Cart() {
                             <i className="fa fa-minus" />
                           </button>
                           <div className="form-outline">
-                            <input  name="quantity" value={product.qty} type="text" className="form-control" />
+                            <input name="quantity" value={product.qty} type="text" className="form-control" />
                             <span className="form-label" htmlFor="form1">Quantity</span>
                           </div>
                           <button

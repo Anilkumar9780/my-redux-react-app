@@ -126,11 +126,10 @@ header {
 	display: flex;
 }
 .product_images {
-	width: 657px;
-	min-width: 657px;
-	height: 683px;
+	width: 457px;
+	min-width: 457px;
+	height: 583px;
 	background-color: #e1e1e1;
-	background: url("https://source.unsplash.com/E-0ON3VGrBc");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -151,6 +150,7 @@ header {
 	margin-top: 35px;
 	margin-bottom: 30px;
 	line-height: 24px;
+	/* cursor: pointer; */
 }
 .product_details ul {
 	margin-bottom: 40px;
