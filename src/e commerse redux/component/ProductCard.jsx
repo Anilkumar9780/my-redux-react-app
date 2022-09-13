@@ -1,11 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action/action";
 import { Link } from 'react-router-dom';
+import SearchBar from "material-ui-search-bar";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import { Select, FormHelperText, FormControl, InputLabel, MenuItem } from '@mui/material';
+
 
 function ProductCard({ data }) {
-  const [loadMore, setLoadMore] = useState(8);
+  const [product, setProduct] = useState([]);
+  const [loadMore, setLoadMore] = useState(12);
+  const [searched, setSearched] = useState('');
+  const [selected, setSelected] = useState();
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
+  const open = Boolean(anchorEl);
+
+  /**
+   *  menu dropdwone
+   * @param {string} event 
+   */
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  /**
+   * set the Product in others state
+   */
+  useEffect(() => {
+    setProduct(data);
+  }, [data])
 
   /**
    * Load More Button 
@@ -15,12 +43,67 @@ function ProductCard({ data }) {
   };
 
   /**
-   * product add to cart;
+   * add to cart product
+   * @param {string} product 
    */
   const addProduct = (product) => {
     dispatch(addCart(product));
   };
 
+  /**
+  * 
+  * @param {string} searchedVal 
+  */
+  const handleOnSearchFolderName = (searchedVal) => {
+    const searchProductName = data.filter((products) => {
+      return products.title.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setProduct(searchProductName);
+  };
+
+  /**
+   * search value cancel
+   */
+  const cancelSearch = () => {
+    setSearched("");
+    handleOnSearchFolderName(searched);
+  };
+
+  /**
+   * sorting by Name Ascending Orders
+   */
+  const sortAscending = () => {
+    const ascending = [...data];
+    const sorting = ascending.sort((a, b) => a.price > b.price ? 1 : -1);
+    setProduct(sorting);
+  };
+
+  /**
+  * Sorting by Name Descending Oders
+  */
+  const sortDescending = () => {
+    const sortbyDescending = [...data];
+    const sort = sortbyDescending.sort((a, b) => a.price > b.price ? -1 : 1);
+    setProduct(sort);
+  };
+
+  /**
+   * 
+   * @param {string} event traget value in input box
+   */
+  const selectionChangeHandler = (event) => {
+    setSelected(event.target.value);
+  };
+
+  /**
+   *  filter product category (men and women)
+   * @param {string} cat 
+   */
+  const filterProduct = (cat) => {
+    const filterProductCategory = data.filter((x) => x.category === cat);
+    setProduct(filterProductCategory);
+    setAnchorEl(null);
+  };
   return (
     <div>
       {/* <!-- Content ---> */}
@@ -38,13 +121,62 @@ function ProductCard({ data }) {
           <span href="#" role="button" className="btn btn-light text-dark p-2 fs-5">Learn more</span>
         </div>
       </div>
+      <div className='py-2'>
+        <hr />
+        <div style={{ marginLeft: '30px', width: '150px' }} >
+          <Button
+            style={{ backgroundColor: 'lightgrey', border: 'none', padding: '10px', borderRadius: '5px' }}
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+          >
+            Category &nbsp;<i class="fa fa-arrow-down" style={{ fontSize: '15px' }} />
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={() => filterProduct("men's clothing")}> Men's clothing</MenuItem>
+            <MenuItem onClick={() => filterProduct("women's clothing")}> Women's clothing</MenuItem>
+            <MenuItem onClick={() => filterProduct("jewelery")}> Jewelery</MenuItem>
+            <MenuItem onClick={() => filterProduct("electronics")}> Electronics</MenuItem>
+          </Menu>
+        </div>
+        <SearchBar
+          style={{ width: '600px', marginLeft: '370px', marginTop: '-48px' }}
+          className='serachbar'
+          value={searched}
+          onChange={(searchVal) => handleOnSearchFolderName(searchVal)}
+          onCancelSearch={() => cancelSearch()}
+        />
+        <FormControl
+          style={{ fontSize: '10px', marginTop: '-62px', marginLeft: '1180px' }}
+          size='small'
+          variant='standard'
+        >
+          <InputLabel>Sort by</InputLabel>
+          <Select value={selected} onChange={selectionChangeHandler}>
+            <MenuItem onClick={sortAscending} value={3}>Low to hight</MenuItem>
+            <MenuItem onClick={sortDescending} value={4}>Hight to low</MenuItem>
+          </Select>
+          <FormHelperText>Sort By Price</FormHelperText>
+        </FormControl>
+        <hr style={{ marginTop: '-14px' }} />
+      </div>
       {/* <!--   Product section   --> */}
       <div className="py-5">
         <div className="container">
           <h3 className="fw-bold mb-sm-3 mb-md-5 text-center text-md-start">New products</h3>
           <div className="row g-3 d-flex justify-content-evenly">
             {/* <!--First Card---> */}
-            {data?.slice(0, loadMore).map((product) => {
+            {product?.slice(0, loadMore).map((product) => {
               return <div key={product.id} className="col-md-3">
                 <div className="card" style={{ width: '17rem' }}>
                   <Link to={`/productinfo/${product.id}`}>

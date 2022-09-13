@@ -13,35 +13,25 @@ import { DarkModeContext } from './context/DarkModeContext';
 export default function App() {
   const { darkMode } = useContext(DarkModeContext);
   const [data, setData] = useState([]);
-
+   
   /**
    * get the data using fack api
    */
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`https://fakestoreapi.com/products`);
+      const res = await fetch(`https://akestoreapi.com/products`);
       setData(await res.json());
-      // setFilter(await res.json());
     };
     getProduct();
   }, []);
 
-  /**
-   *  filter product category (men and women)
-   * @param {string} cat 
-   */
-  const filterProduct = (cat) => {
-    const updateList = data.filter((x) => x.category === cat);
-    setData(updateList);
-  };
-  
   return (
     <div style={{
-      backgroundColor: darkMode ? 'black' : 'white',
-      color: darkMode ? 'white' : 'black',
+      backgroundColor: darkMode ? `black` : `white`,
+      color: darkMode ? `white` : `black`,
     }}>
       <BrowserRouter>
-        <NavBar filterProduct={filterProduct} data={data} setData={setData}/>
+        <NavBar data={data} setData={setData} />
         <Routes>
           <Route exact path="/" element={<ProductCard data={data} />} />
           <Route path="/productinfo/:id" element={<ProductDetail />} />

@@ -31,9 +31,9 @@ export default function Cart() {
   };
 
   /**
-   * cart all products total price
+   * cart all products totalPrice price
    */
-  const total = Object.values(cart).reduce((result, cartItem) => result + cartItem.price * cartItem.qty, 0);
+  const totalPrice = Object.values(cart).reduce((result, cartItem) => result + cartItem.price * cartItem.qty, 0);
 
   return (
     <div>
@@ -148,8 +148,8 @@ export default function Cart() {
                     <li
                       className="list-group-product d-flex justify-content-between align-items-center border-0 px-0 pb-0"
                     >
-                      Products
-                      <span>$ {total}</span>
+                      Products All
+                      <span>$ {totalPrice}</span>
                     </li>
                     <li className="list-group-product d-flex justify-content-between align-items-center px-0">
                       Shipping
@@ -165,7 +165,7 @@ export default function Cart() {
                           <p className="mb-0">(including VAT)</p>
                         </strong>
                       </div>
-                      <span><strong>$ {total}</strong></span>
+                      <span><strong>$ {totalPrice}</strong></span>
                     </li>
                   </ul>
                   <button type="button" className="btn btn-primary btn-lg btn-block">

@@ -1,6 +1,6 @@
 /**
  *  add product to cart 
- * @param {string} product 
+ * @param {*} product 
  * @returns array
  */
 export const addCart = (product) => {
@@ -12,7 +12,7 @@ export const addCart = (product) => {
 
 /**
  * delete product
- * @param {string} product 
+ * @param {*} product 
  * @returns array
  */
 export const delCart = (product) => {

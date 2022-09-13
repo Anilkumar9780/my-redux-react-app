@@ -1,14 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { DarkModeContext } from '../context/DarkModeContext';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { Select, FormHelperText, FormControl, InputLabel, MenuItem } from '@mui/material';
 
-
-function NavBar({ filterProduct, data, setData }) {
+function NavBar({ data, setData }) {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const cart = useSelector((state) => state.handleCart);
-  const [selected, setSelected] = useState();
 
   /**
    * dark mode and light mode onclick
@@ -17,34 +14,16 @@ function NavBar({ filterProduct, data, setData }) {
     toggleDarkMode();
   };
 
-
   /**
-   * sorting by Name Ascending Orders
-   */
-  const sortAscending = () => {
-    const ascending = [...data];
-    const sorting = ascending.sort((a, b) => a.price > b.price ? 1 : -1);
-    setData(sorting);
-  };
-
-  /**
-  * Sorting by Name Descending Oders
+  *  filter product category (men and women)
+  * @param {string} cat 
   */
-  const sortDescending = () => {
-    const sortbyDescending = [...data];
-    const sort = sortbyDescending.sort((a, b) => a.price > b.price ? -1 : 1);
-    setData(sort);
-  };
-
-  /**
-   * 
-   * @param {string} event traget value in input box
-   */
-  const selectionChangeHandler = (event) => {
-    setSelected(event.target.value);
+  const filterProduct = (cat) => {
+    const updateList = data.filter((x) => x.category === cat);
+    setData(updateList);
   };
   return (
-    <div className={darkMode ? 'text-white' : 'text-dark'}>
+    <div className={darkMode ? ('text-white') : ('text-dark')}>
       {/* navbar */}
       <header>
         <div className="bg-white shadow rounded-circle p-3">
@@ -69,7 +48,7 @@ function NavBar({ filterProduct, data, setData }) {
             <span className="material-symbols-outlined">menu</span>
           </div>
           <div className="menu_links">
-            <ul style={{ cursor: 'pointer' }}>
+            <ul style={{ cursor: 'pointer', border:'none' }}>
               <Link to='/' ><li>Home</li></Link>
               <li onClick={() => filterProduct("men's clothing")} >Men</li>
               <li onClick={() => filterProduct("women's clothing")}>Women</li>
@@ -79,34 +58,20 @@ function NavBar({ filterProduct, data, setData }) {
           <div className="menu_icons">
             <span className="material-symbols-outlined">favorite</span>
             <div className="vert_devider" />
-            <FormControl
-              style={{ fontSize: '10px', marginTop: '-18px', marginLeft: '30px' }}
-              size='small'
-              variant='standard'
-            >
-              <InputLabel>Sort by</InputLabel>
-              <Select value={selected} onChange={selectionChangeHandler}>
-                <MenuItem onClick={sortAscending} value={2}>Low to hight</MenuItem>
-                <MenuItem onClick={sortDescending} value={3}>Hight to low</MenuItem>
-              </Select>
-              <FormHelperText>Sort By Price</FormHelperText>
-            </FormControl>
+            <div>
+              <button
+                type="button"
+                id="toggle"
+                className={darkMode ? (`material-symbols-outlined `) : (`material-symbols-outlined `)}
+                onClick={handleClick}
+              >
+                switch
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div style={{ marginTop: '-60px' }}>
-        <div>
-          <button
-            type="button"
-            id="toggle"
-            className={darkMode ? `btn btn-outline-dark` : `btn btn-outline-white`}
-            onClick={handleClick}
-          >
-            Dark
-            <div className="toggle-inner" />
-          </button>
-        </div>
-      </div>
+      <div style={{ marginTop: '-20px' }} />
       {/* <!--  Navbar  --> */}
     </div>
   );
