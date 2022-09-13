@@ -18,8 +18,9 @@ const handleCart = (state = cart, action) => {
         ];
       }
     case "DELITEM":
-      console.log(product.id);
+      // console.log(product.id);
       return state.filter((item) => item.id !== product.id);
+
     case "INCREASE_QUANTITY":
       const exist2 = state.find((x) => x.id === product.id);
       if (exist2) {

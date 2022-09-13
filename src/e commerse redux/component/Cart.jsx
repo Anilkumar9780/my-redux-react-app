@@ -18,16 +18,16 @@ export default function Cart() {
    * Increase Product Quantity 
    * @param {product} product 
    */
-  const IncreaseQuantity = (product) => {
-    dispatch(IncreaseQty(product));
+  const IncreaseQuantity = (id) => {
+    dispatch(IncreaseQty(id));
   };
 
   /**
    *  Decrease Product Quantity
    * @param {product} product 
    */
-  const DecreaseQuantity = (product) => {
-    dispatch(DecreaseQty(product));
+  const DecreaseQuantity = (id) => {
+    dispatch(DecreaseQty(id));
   };
 
   /**
@@ -37,7 +37,7 @@ export default function Cart() {
 
   return (
     <div>
-      <section className="h-100 gradient-custom">
+      <section className="h-100 gradient-custom text-black">
         <div className="container py-5">
           <div className="row d-flex justify-content-center my-4">
             <div className="col-md-8">
@@ -56,7 +56,7 @@ export default function Cart() {
                             className="w-100"
                           />
                           <a href="#!">
-                            <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }} />
+                            <div className="mask"  />
                           </a>
                         </div>
                       </div>
@@ -141,14 +141,14 @@ export default function Cart() {
             <div className="col-md-4">
               <div className="card mb-4">
                 <div className="card-header py-3">
-                  <h5 className="mb-0">Summary</h5>
+                  <h5 className="mb-0">Order Summary</h5>
                 </div>
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
                     <li
                       className="list-group-product d-flex justify-content-between align-items-center border-0 px-0 pb-0"
                     >
-                      Products All
+                      All Products
                       <span>$ {totalPrice}</span>
                     </li>
                     <li className="list-group-product d-flex justify-content-between align-items-center px-0">

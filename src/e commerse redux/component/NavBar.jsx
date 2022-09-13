@@ -22,6 +22,7 @@ function NavBar({ data, setData }) {
     const updateList = data.filter((x) => x.category === cat);
     setData(updateList);
   };
+  
   return (
     <div className={darkMode ? ('text-white') : ('text-dark')}>
       {/* navbar */}
@@ -34,8 +35,8 @@ function NavBar({ data, setData }) {
         </div>
         <div className="header_add-to-cart">
           <Link to="/cart">
-            <div className="btn btn_outline">
-              <i className="fa fa-shopping-cart " />
+            <div className="btn btn_outline ">
+              <i className="fa fa-shopping-cart bg-red" />
               {' '}
               Cart ({cart.length})
             </div>
@@ -48,8 +49,8 @@ function NavBar({ data, setData }) {
             <span className="material-symbols-outlined">menu</span>
           </div>
           <div className="menu_links">
-            <ul style={{ cursor: 'pointer', border:'none' }}>
-              <Link to='/' ><li>Home</li></Link>
+            <ul style={{ cursor: 'pointer', border: 'none' }}>
+              <Link to='/' ><li className='text-decoration-none'>Home</li></Link>
               <li onClick={() => filterProduct("men's clothing")} >Men</li>
               <li onClick={() => filterProduct("women's clothing")}>Women</li>
               <li>About</li>

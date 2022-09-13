@@ -19,17 +19,14 @@ export default function App() {
    */
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`https://akestoreapi.com/products`);
+      const res = await fetch(`https://fakestoreapi.com/products`);
       setData(await res.json());
     };
     getProduct();
   }, []);
 
   return (
-    <div style={{
-      backgroundColor: darkMode ? `black` : `white`,
-      color: darkMode ? `white` : `black`,
-    }}>
+    <div  className={darkMode ? (' bg-dark text-white') : (' bg-white text-dark')} >
       <BrowserRouter>
         <NavBar data={data} setData={setData} />
         <Routes>
@@ -42,5 +39,3 @@ export default function App() {
     </div>
   );
 }
-
-// https://codesandbox.io/s/7ommp?file=/src/reducers/index.js:0-2038

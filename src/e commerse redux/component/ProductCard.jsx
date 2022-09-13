@@ -46,8 +46,8 @@ function ProductCard({ data }) {
    * add to cart product
    * @param {string} product 
    */
-  const addProduct = (product) => {
-    dispatch(addCart(product));
+  const addProduct = (id) => {
+    dispatch(addCart(id));
   };
 
   /**
@@ -116,9 +116,9 @@ function ProductCard({ data }) {
             Brands in our store
           </h1>
           <p className="lead">Trendy Products, Factory Prices, Excellent Service</p>
-          <span href="#" role="button" className="btn btn-warning py-2 px-3 fs-5 text-light" style={{ backgroundColor: '#ff8100' }}>Purchase now</span>
+          <span role="button" className="btn btn-warning py-2 px-3 fs-5 text-light" >Purchase now</span>
           {' '}
-          <span href="#" role="button" className="btn btn-light text-dark p-2 fs-5">Learn more</span>
+          <span role="button" className="btn btn-light text-dark p-2 fs-5">Learn more</span>
         </div>
       </div>
       <div className='py-2'>
@@ -157,7 +157,7 @@ function ProductCard({ data }) {
           onCancelSearch={() => cancelSearch()}
         />
         <FormControl
-          style={{ fontSize: '10px', marginTop: '-62px', marginLeft: '1180px' }}
+          style={{ fontSize: '10px', marginTop: '-65px', marginLeft: '1180px' }}
           size='small'
           variant='standard'
         >
@@ -186,10 +186,10 @@ function ProductCard({ data }) {
                   </Link>
                   <div className="card-body">
                     <hr />
-                    <h5 className="card-title">$ {product.price}</h5>
+                    <h5 className="card-title text-dark">$ {product.price}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{product.title.substring(0, 12)}</h6>
                     <button type='button' onClick={() => addProduct(product)} className="btn btn-primary card-link py-2 px-4">Add to card</button>
-                    <span href="#" className="btn btn-outline-primary card-link">
+                    <span className="btn btn-outline-primary card-link">
                       {' '}
                       <i className="fa fa-heart" />
                     </span>
@@ -218,7 +218,7 @@ function ProductCard({ data }) {
                 </div>
                 <div className="ms-3 mt-md-5">
                   <h6 className="h6 fw-bold">Reasonable prices</h6>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 d-flex align-items-center">
@@ -229,7 +229,7 @@ function ProductCard({ data }) {
                   <h6 className="h6 fw-bold">
                     Best quality
                   </h6>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
                 </div>
               </div>
               <div className=" col-lg-4 col-md-6 d-flex align-items-center">
@@ -238,7 +238,7 @@ function ProductCard({ data }) {
                 </div>
                 <div className="ms-3 mt-md-5">
                   <h6 className="h6 fw-bold">Worldwide shipping</h6>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 d-flex align-items-center">
@@ -247,7 +247,7 @@ function ProductCard({ data }) {
                 </div>
                 <div className="ms-3 mt-md-5">
                   <h6 className="h6 fw-bold">Customer satisfaction</h6>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 d-flex align-items-center">
@@ -256,7 +256,7 @@ function ProductCard({ data }) {
                 </div>
                 <div className="ms-3 mt-md-5">
                   <h6 className="h6 fw-bold">Happy customers</h6>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 d-flex align-items-center">
@@ -265,7 +265,7 @@ function ProductCard({ data }) {
                 </div>
                 <div className="ms-3 mt-md-5">
                   <h6 className="h6 fw-bold">Thousand items</h6>
-                  <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
                 </div>
               </div>
             </div>

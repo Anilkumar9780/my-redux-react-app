@@ -13,14 +13,14 @@ body {
 }
 p {
 	font-size: 12px;
-	color: #111111;
+	/* color: #111111; */
 }
 #welcome_message {
 	width: 100%;
 	font-size: 10px;
 	padding: 12px;
 	background-color: rgba(104, 137, 154, 0.25);
-	color: #868f93;
+	/* color: #868f93; */
 	text-align: center;
 	text-transform: uppercase;
 	font-weight: 400;
@@ -80,7 +80,7 @@ header {
 .menu_links ul li {
 	list-style: none;
 	font-size: 12px;
-	color: #111111;
+	/* color: #111111; */
 	padding: 27px;
 	text-transform: uppercase;
 }
@@ -104,7 +104,7 @@ header {
 }
 .btn_primary {
 	background-color: #111111;
-	color: #ffffff;
+	/* color: #ffffff; */
 	padding: 20px 60px;
 }
 .btn_outline {
@@ -141,11 +141,11 @@ header {
 .product_details h4 {
 	font-size: 24px;
 	font-weight: 600;
-	color: #111111;
+	/* color: #111111; */
 }
 .product_details p {
 	font-size: 14px;
-	color: #555555;
+	/* color: #555555; */
 	font-weight: 300;
 	margin-top: 35px;
 	margin-bottom: 30px;
@@ -157,7 +157,7 @@ header {
 }
 .product_details ul li {
 	font-size: 14px;
-	color: #555555;
+	/* color: #555555; */
 	font-weight: 300;
 	line-height: 24px;
 	margin-left: 14px;
@@ -166,7 +166,7 @@ header {
 .product_details ul li::before {
 	content: "\2022";
 	/* Add content: \2022 is the CSS Code/unicode for a bullet */
-	color: #cccccc;
+	/* color: #cccccc; */
 	/* Change the color */
 	display: inline-block;
 	/* Needed to add space between the bullet and the text */
@@ -190,16 +190,16 @@ footer {
 	border-top: 1px solid #e1e1e1;
 	margin-top: 100px;
 	font-size: 13px;
-	color: #b5b5b5;
+	/* color: #b5b5b5; */
 	text-align: center;
 }
 footer p {
 	font-size: 13px;
-	color: #b5b5b5;
+	/* color: #b5b5b5; */
 	text-align: center;
 }
 .material-symbols-outlined {
-	color: #111111;
+	/* color: #111111; */
 	font-size: 22px;
 	cursor: pointer;
 }
@@ -210,13 +210,13 @@ footer p {
 	margin: 16px;
 }
 a {
-	color: #111111;
+	/* color: #111111; */
 	font-size: 12px;
 	text-transform: uppercase;
 }
 h6 {
 	font-size: 13px;
-	color: #555555;
+	/* color: #555555; */
 	font-weight: 300;
 }
 .back {
@@ -227,19 +227,19 @@ h6 {
 }
 .back a {
 	font-size: 13px;
-	color: #68899a;
+	/* color: #68899a; */
 	font-weight: 300;
 	text-transform: capitalize;
 }
 h2 {
 	font-size: 24px;
 	font-weight: 700;
-	color: #111111;
+	/* color: #111111; */
 }
 h3 {
 	font-size: 24px;
 	font-weight: 700;
-	color: #68899a;
+	/* color: #68899a; */
 }
 .about {
 	margin-top: 30px;
@@ -247,13 +247,13 @@ h3 {
 .about p {
 	font-size: 14px;
 	margin: 0;
-	color: #111111;
+	/* color: #111111; */
 	font-weight: 500;
 }
 .about span {
 	font-size: 14px;
 	margin: 0;
-	color: #68899a;
+	/* color: #68899a; */
 	font-weight: 500;
 }
 .cta .material-symbols-outlined {
