@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { DarkModeContext } from '../context/DarkModeContext';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { MenuItem } from '@mui/material';
 
 function NavBar({ data, setData }) {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
   const cart = useSelector((state) => state.handleCart);
 
   /**
-   * dark mode and light mode onclick
+   * dark and light mode in using onclick button 
    */
   const handleClick = () => {
     toggleDarkMode();
@@ -19,10 +20,10 @@ function NavBar({ data, setData }) {
   * @param {string} cat 
   */
   const filterProduct = (cat) => {
-    const updateList = data.filter((x) => x.category === cat);
-    setData(updateList);
+    const productCategoryFilter = data.filter((x) => x.category === cat);
+    setData(productCategoryFilter);
   };
-  
+
   return (
     <div className={darkMode ? ('text-white') : ('text-dark')}>
       {/* navbar */}
@@ -59,16 +60,12 @@ function NavBar({ data, setData }) {
           <div className="menu_icons">
             <span className="material-symbols-outlined">favorite</span>
             <div className="vert_devider" />
-            <div>
-              <button
-                type="button"
-                id="toggle"
-                className={darkMode ? (`material-symbols-outlined `) : (`material-symbols-outlined `)}
-                onClick={handleClick}
-              >
-                switch
-              </button>
-            </div>
+            <span
+              className={darkMode ? (`material-symbols-outlined`) : (`material-symbols-outlined`)}
+              onClick={handleClick}
+            >
+              light_mode   
+            </span>
           </div>
         </div>
       </div>

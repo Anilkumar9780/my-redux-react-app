@@ -13,7 +13,7 @@ function DarkModeProvider(props){
                 {props.children}
             </DarkModeContext.Provider>
         </div>
-    )
+    )  
 };
 
 export {DarkModeContext, DarkModeProvider};

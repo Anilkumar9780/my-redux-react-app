@@ -18,7 +18,7 @@ function ProductCard({ data }) {
   const open = Boolean(anchorEl);
 
   /**
-   *  menu dropdwone
+   * 
    * @param {string} event 
    */
   const handleClick = (event) => {
@@ -94,7 +94,6 @@ function ProductCard({ data }) {
   const selectionChangeHandler = (event) => {
     setSelected(event.target.value);
   };
-
   /**
    *  filter product category (men and women)
    * @param {string} cat 
@@ -123,7 +122,7 @@ function ProductCard({ data }) {
       </div>
       <div className='py-2'>
         <hr />
-        <div style={{ marginLeft: '30px', width: '150px' }} >
+        <div className='categoryMenuDropdown' style={{ marginLeft: '30px', width: '150px' }} >
           <Button
             style={{ backgroundColor: 'lightgrey', border: 'none', padding: '10px', borderRadius: '5px' }}
             id="basic-button"
@@ -132,7 +131,7 @@ function ProductCard({ data }) {
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
           >
-            Category &nbsp;<i class="fa fa-arrow-down" style={{ fontSize: '15px' }} />
+            Category &nbsp;<i className="fa fa-arrow-down" style={{ fontSize: '15px' }} />
           </Button>
           <Menu
             id="basic-menu"
@@ -143,6 +142,7 @@ function ProductCard({ data }) {
               'aria-labelledby': 'basic-button',
             }}
           >
+          <MenuItem onClick={() => filterProduct(data)}>All</MenuItem>
             <MenuItem onClick={() => filterProduct("men's clothing")}> Men's clothing</MenuItem>
             <MenuItem onClick={() => filterProduct("women's clothing")}> Women's clothing</MenuItem>
             <MenuItem onClick={() => filterProduct("jewelery")}> Jewelery</MenuItem>

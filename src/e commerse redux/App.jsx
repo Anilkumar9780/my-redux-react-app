@@ -11,8 +11,8 @@ import ProductDetail from './component/ProductDetail';
 import { DarkModeContext } from './context/DarkModeContext';
 
 export default function App() {
-  const { darkMode } = useContext(DarkModeContext);
   const [data, setData] = useState([]);
+  const { darkMode } = useContext(DarkModeContext);
    
   /**
    * get the data using fack api
@@ -26,7 +26,7 @@ export default function App() {
   }, []);
 
   return (
-    <div  className={darkMode ? (' bg-dark text-white') : (' bg-white text-dark')} >
+    <div  className={darkMode ? ('bg-dark text-white') : ('bg-white text-dark')}>
       <BrowserRouter>
         <NavBar data={data} setData={setData} />
         <Routes>
