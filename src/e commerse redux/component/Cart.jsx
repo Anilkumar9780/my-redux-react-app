@@ -31,19 +31,29 @@ export default function Cart() {
   };
 
   /**
-   * cart all products totalPrice price
+   *  total Add product in cart get the total Price all Product in cart 
    */
-  const totalPrice = Object.values(cart).reduce((result, cartItem) => result + cartItem.price * cartItem.qty, 0);
+  const totalAddProductInCartTotalPrice = Object.values(cart)
+    .reduce((result, cartProduct) =>
+      result + cartProduct.price * cartProduct.qty, 0
+    );
+
+  const [show, setShow] = React.useState(false); 
+  const usercome = () => {
+    setShow(true)
+  };
 
   return (
     <div>
+      <button className='btn btn-outilne-primary' onClick={usercome}>Login</button>
+      {show ? <>True</> : <>False</>}
       <section className="h-100 gradient-custom text-black">
         <div className="container py-5">
           <div className="row d-flex justify-content-center my-4">
             <div className="col-md-8">
               <div className="card mb-4">
                 <div className="card-header py-3">
-                  <h5 className="mb-0">Cart - {cart.length}{' '}items</h5>
+                  <h5 className="mb-0">Car:- {cart.length}{' '}items</h5>
                 </div>
                 <div className="card-body">
                   {cart.length > 0 ? (cart.map((product) => {
@@ -51,12 +61,12 @@ export default function Cart() {
                       <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                         <div className="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
                           <img
-                            src={product.image}
+                            src={product.images[0]}
                             alt={product.title}
                             className="w-100"
                           />
                           <a href="#!">
-                            <div className="mask"  />
+                            <div className="mask" />
                           </a>
                         </div>
                       </div>
@@ -149,7 +159,7 @@ export default function Cart() {
                       className="list-group-product d-flex justify-content-between align-items-center border-0 px-0 pb-0"
                     >
                       All Products
-                      <span>$ {totalPrice}</span>
+                      <span>$ {totalAddProductInCartTotalPrice}</span>
                     </li>
                     <li className="list-group-product d-flex justify-content-between align-items-center px-0">
                       Shipping
@@ -165,7 +175,7 @@ export default function Cart() {
                           <p className="mb-0">(including VAT)</p>
                         </strong>
                       </div>
-                      <span><strong>$ {totalPrice}</strong></span>
+                      <span><strong>$ {totalAddProductInCartTotalPrice}</strong></span>
                     </li>
                   </ul>
                   <button type="button" className="btn btn-primary btn-lg btn-block">
@@ -181,3 +191,9 @@ export default function Cart() {
     </div>
   );
 }
+
+
+
+
+
+// https://cloudnweb.dev/2021/02/modern-react-redux-tutotials-redux-toolkit-login-user-registration/#demo

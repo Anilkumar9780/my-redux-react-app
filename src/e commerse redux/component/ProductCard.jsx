@@ -13,7 +13,7 @@ function ProductCard({ data }) {
   const [loadMore, setLoadMore] = useState(12);
   const [searched, setSearched] = useState('');
   const [selected, setSelected] = useState();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const open = Boolean(anchorEl);
 
@@ -79,8 +79,8 @@ function ProductCard({ data }) {
   };
 
   /**
-  * Sorting by Name Descending Oders
-  */
+   * Sorting by Name Descending Oders    
+   */
   const sortDescending = () => {
     const sortbyDescending = [...data];
     const sort = sortbyDescending.sort((a, b) => a.price > b.price ? -1 : 1);
@@ -143,10 +143,11 @@ function ProductCard({ data }) {
             }}
           >
           <MenuItem onClick={() => filterProduct(data)}>All</MenuItem>
-            <MenuItem onClick={() => filterProduct("men's clothing")}> Men's clothing</MenuItem>
-            <MenuItem onClick={() => filterProduct("women's clothing")}> Women's clothing</MenuItem>
-            <MenuItem onClick={() => filterProduct("jewelery")}> Jewelery</MenuItem>
-            <MenuItem onClick={() => filterProduct("electronics")}> Electronics</MenuItem>
+            <MenuItem onClick={() => filterProduct("Clothes")}> Men's clothing</MenuItem>
+            <MenuItem onClick={() => filterProduct("Electronics")}> Women's clothing</MenuItem>
+            <MenuItem onClick={() => filterProduct("Furniture")}> Jewelery</MenuItem>
+            <MenuItem onClick={() => filterProduct("Shoes")}> Electronics</MenuItem>
+            <MenuItem onClick={() => filterProduct("Others")}> Electronics</MenuItem>
           </Menu>
         </div>
         <SearchBar
@@ -180,7 +181,7 @@ function ProductCard({ data }) {
               return <div key={product.id} className="col-md-3">
                 <div className="card" style={{ width: '17rem' }}>
                   <Link to={`/productinfo/${product.id}`}>
-                    <img className="img text-center" src={product.image}
+                    <img className="img text-center" src={product.images[0]}
                       alt={product.title}
                       width="100%" height="240px" />
                   </Link>

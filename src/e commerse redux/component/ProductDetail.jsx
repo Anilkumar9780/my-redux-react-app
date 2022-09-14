@@ -14,7 +14,7 @@ function DetailPage() {
    */
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
       setProduct(await res.json());
     };
     getProduct();
@@ -30,13 +30,15 @@ function DetailPage() {
   return (
     <div>
       <div id="product" className="py-3">
-        <div>
-          <img
-            src={product.image}
-            alt={product.title}
-            className="product_images"
-          />
-        </div>
+        {product.images.map((image) =>
+          <div>
+            <img
+              key={image}
+              src={image}
+              alt={product.title}
+              className="product_images"
+            />
+          </div>)}
         <div className="product_details">
           <Link to="/">
             <div className="back border-0">

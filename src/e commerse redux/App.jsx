@@ -19,12 +19,12 @@ export default function App() {
    */
   useEffect(() => {
     const getProduct = async () => {
-      const res = await fetch(`https://fakestoreapi.com/products`);
+      const res = await fetch(`https://api.escuelajs.co/api/v1/products`);
       setData(await res.json());
     };
     getProduct();
   }, []);
-
+console.log(data);
   return (
     <div  className={darkMode ? ('bg-dark text-white') : ('bg-white text-dark')}>
       <BrowserRouter>
